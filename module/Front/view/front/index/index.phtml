@@ -1,0 +1,28 @@
+<?php
+    $this->headLink()->appendStylesheet('/css/jobs.css');
+?>
+<?php foreach ($this->results as $result): ?>
+    <div class="category">
+        <div class="feed">
+          <a href="">Feed</a>
+        </div>
+        <h1><a href="<?php echo $this->url('category', array('action' => 'list', 'id' => $result['category']->getIdCategory()))?>"><?php echo $result['category']->getName(); ?></a></h1>
+    </div>
+    <table class="jobs">
+        <tbody>
+            <?php foreach($result['job'] as $job): ?>
+            <tr class="<?php echo $this->cycle(array("even", "odd"))->next();?>">
+                <td class="location"><?php echo $this->escapeHtml($job->getLocation()); ?></td>
+                <td class="position">
+                    <a href="<?php echo $this->url('job', array('action'=>'get', 'id'=>$job->getIdJob()));?>">
+                        <?php echo $this->escapeHtml($job->getPosition()); ?>
+                    </a>
+                </td>
+                <td class="company">
+                    <?php echo $this->escapeHtml($job->getCompany()); ?>
+                </td>
+            </tr>
+            <?php endforeach;?>
+        </tbody>
+    </table>
+<?php endforeach;?>

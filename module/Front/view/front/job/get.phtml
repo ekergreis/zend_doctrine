@@ -1,0 +1,26 @@
+<?php
+$this->headLink()->appendStylesheet('/css/job.css');
+?>
+<div id="job">
+    <h1><?php echo $this->escapeHtml($this->job->getCompany())?></h1>
+    <h2><?php echo $this->escapeHtml($this->job->getLocation())?></h2>
+    <h3><?php echo $this->escapeHtml($this->category->getName())?>
+    <?php if (isset($this->job->type)):?>
+        <small> - <?php echo $this->job->getType(); ?></small></h3>
+    <?php endif;?>
+
+  
+    <div class="description">
+        <p><?php echo $this->escapeHtml($this->job->getDescription())?></p>
+    </div>
+
+    <h4>How to apply?</h4>
+    <p class="how_to_apply"><?php echo $this->escapeHtml($this->job->getHowToPlay())?></p>
+
+    <div class="meta">
+        <?php 
+            $date = $this->job->getCreatedAt();
+        ?>
+        <small>posted on <?php echo $date->format("d/m/Y");?></small>
+    </div>
+</div>
